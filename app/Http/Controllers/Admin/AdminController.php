@@ -22,7 +22,7 @@ class AdminController extends Controller
 
             $rules = [
                 'email' => 'required|email|max:255',
-                'password' => 'required|max30',
+                'password' => 'required|max:30',
             ];
 
             $customMessages = [
@@ -46,5 +46,9 @@ class AdminController extends Controller
     {
         Auth::guard('admin')->logout();
         return redirect('admin/login');
+    }
+
+    public function updatePassword(){
+        return view('admin.update_password');
     }
 }
