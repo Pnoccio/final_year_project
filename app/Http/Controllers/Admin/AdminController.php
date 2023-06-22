@@ -76,4 +76,26 @@ class AdminController extends Controller
             return false;
         }
     }
+
+    public function updateDetails(Request $request){
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die; 
+
+            $rules = [
+                'name' => 'required|max:255',
+            ];
+
+            $customMessages = [
+                'name.required' => 'Name is required',
+            ];
+
+            $this->validate($request, $rules, $customMessages);
+
+            // update the admin details
+            Admin::where('email', Auth::guard('admin')->user()->email)->update(['name' => $data['name']]);
+            return redirect()->back()->with('success_message', 'You have suceessfully updateed your details');
+        }
+        return view('admin.update_details');
+    }
 }
