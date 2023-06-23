@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
+        Session::put('page', 'dashboard');
         return view('admin.dashboard');
     }
 
@@ -50,6 +52,7 @@ class AdminController extends Controller
     }
 
     public function updatePassword(Request $request){
+        Session::put('page', 'update-password');
         if($request->isMethod('post')){
             $data = $request->all();
             // checking if the password is correct
@@ -78,6 +81,7 @@ class AdminController extends Controller
     }
 
     public function updateDetails(Request $request){
+        Session::put('page', 'update_details');
         if ($request->isMethod('post')) {
             $data = $request->all();
             // echo "<pre>"; print_r($data); die; 

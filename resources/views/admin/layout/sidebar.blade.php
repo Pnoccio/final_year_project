@@ -3,7 +3,7 @@
     <a href="index3.html" class="brand-link">
         <img src="{{ asset('admin/images/AdminLTELogo.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">Final Year Project</span>
     </a>
 
     <!-- Sidebar -->
@@ -35,16 +35,32 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+            @if (Session::get('page') == 'dashboard')
+                @php
+                    $active = 'active';
+                @endphp
+            @else
+                @php $active = "" @endphp
+            @endif
             <li class="nav-item">
-                <a href="{{ url('admin/dashboard') }}" class="nav-link">
+                <a href="{{ url('admin/dashboard') }}" class="nav-link {{$active}}">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         Dashboard
                     </p>
                 </a>
             </li>
+            @if(Session::get('page') == 'update-password' || Session::get('page') == 'update_details')
+                @php
+                  $active = 'active';
+                @endphp
+            @else
+                @php
+                  $active = "";
+                @endphp
+            @endif
             <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+                <a href="#" class="nav-link {{$active}}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         Settings
@@ -52,14 +68,28 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
+                    @if (Session::get('page') == 'update-password')
+                        @php
+                            $active = 'active';
+                        @endphp
+                    @else
+                        @php $active = "" @endphp
+                    @endif
                     <li class="nav-item">
-                        <a href="{{ url('admin/update-password') }}" class="nav-link active">
+                        <a href="{{ url('admin/update-password') }}" class="nav-link {{$active}}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Update Admin Password</p>
                         </a>
                     </li>
+                    @if (Session::get('page') == 'update_details')
+                        @php
+                            $active = 'active';
+                        @endphp
+                    @else
+                        @php $active = "" @endphp
+                    @endif
                     <li class="nav-item">
-                        <a href="./index2.html" class="nav-link">
+                        <a href="{{ url('admin/update_details') }}" class="nav-link {{$active}}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Update Admin Details</p>
                         </a>
@@ -72,9 +102,8 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
-                        Layout Options
+                        Pages
                         <i class="fas fa-angle-left right"></i>
-                        <span class="badge badge-info right">6</span>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
