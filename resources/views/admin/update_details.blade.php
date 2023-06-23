@@ -46,6 +46,15 @@
                                     </button>
                                 </div>
                             @endif
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <!-- form start -->
                             <form method="post" action="{{ url('admin/update_details') }}">@csrf
                                 <div class="card-body">
