@@ -1,3 +1,0 @@
-22-jun-2023
-- updated the password to admin
-- password by default is 12345678
