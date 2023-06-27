@@ -31,23 +31,11 @@ class HomeController extends Controller
         return view('home');
     }
 
-    /**
-     * User Profile
-     * @param Nill
-     * @return View Profile
-     * @author Shani Singh
-     */
     public function getProfile()
     {
         return view('profile');
     }
 
-    /**
-     * Update Profile
-     * @param $profileData
-     * @return Boolean With Success Message
-     * @author Shani Singh
-     */
     public function updateProfile(Request $request)
     {
         #Validations
