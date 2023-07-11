@@ -29,6 +29,10 @@ class User extends Authenticatable
         'type',
     ];
 
+    protected $hidden = [
+        'password',
+    ];
+
    
 
     public function getFullNameAttribute()
