@@ -21,11 +21,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    
     public function index()
     {
         return view('home');
@@ -66,13 +62,6 @@ class HomeController extends Controller
             return back()->with('error', $th->getMessage());
         }
     }
-
-    /**
-     * Change Password
-     * @param Old Password, New Password, Confirm New Password
-     * @return Boolean With Success Message
-     * @author Shani Singh
-     */
     public function changePassword(Request $request)
     {
         $request->validate([

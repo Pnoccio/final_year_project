@@ -23,11 +23,6 @@ class RolesController extends Controller
         $this->middleware('permission:role-delete', ['only' => ['destroy']]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $roles = Role::paginate(10);
@@ -37,11 +32,6 @@ class RolesController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $permissions = Permission::all();
@@ -49,12 +39,6 @@ class RolesController extends Controller
         return view('roles.add', ['permissions' => $permissions]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         DB::beginTransaction();
@@ -75,23 +59,11 @@ class RolesController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $role = Role::whereId($id)->with('permissions')->first();
@@ -101,13 +73,6 @@ class RolesController extends Controller
         return view('roles.edit', ['role' => $role, 'permissions' => $permissions]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         DB::beginTransaction();
@@ -137,12 +102,6 @@ class RolesController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         DB::beginTransaction();

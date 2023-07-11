@@ -15,11 +15,7 @@ use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -29,25 +25,12 @@ class UserController extends Controller
         $this->middleware('permission:user-delete', ['only' => ['delete']]);
     }
 
-
-    /**
-     * List User 
-     * @param Nill
-     * @return Array $user
-     * @author Shani Singh
-     */
     public function index()
     {
         $users = User::with('roles')->paginate(10);
         return view('users.index', ['users' => $users]);
     }
     
-    /**
-     * Create User 
-     * @param Nill
-     * @return Array $user
-     * @author Shani Singh
-     */
     public function create()
     {
         $roles = Role::all();
@@ -55,12 +38,6 @@ class UserController extends Controller
         return view('users.add', ['roles' => $roles]);
     }
 
-    /**
-     * Store User
-     * @param Request $request
-     * @return View Users
-     * @author Shani Singh
-     */
     public function store(Request $request)
     {
         // Validations
@@ -104,12 +81,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Update Status Of User
-     * @param Integer $status
-     * @return List Page With Success
-     * @author Shani Singh
-     */
     public function updateStatus($user_id, $status)
     {
         // Validation
@@ -143,12 +114,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Edit User
-     * @param Integer $user
-     * @return Collection $user
-     * @author Shani Singh
-     */
     public function edit(User $user)
     {
         $roles = Role::all();
@@ -158,12 +123,6 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Update User
-     * @param Request $request, User $user
-     * @return View Users
-     * @author Shani Singh
-     */
     public function update(Request $request, User $user)
     {
         // Validations
@@ -206,12 +165,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Delete User
-     * @param User $user
-     * @return Index Users
-     * @author Shani Singh
-     */
     public function delete(User $user)
     {
         DB::beginTransaction();
@@ -228,11 +181,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Import Users 
-     * @param Null
-     * @return View File
-     */
     public function importUsers()
     {
         return view('users.import');
