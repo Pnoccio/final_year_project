@@ -103,6 +103,22 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center mb-3">Latest Data</h2>
+                <ul>
+                    @foreach($data as $item)
+                        <li>
+                            <strong>Temperature and Humidity:</strong> {{ $item['sensor1'] ?? 'N/A' }}<br>
+                            <strong>Smoke:</strong> {{ $item['sensor2'] ?? 'N/A' }}<br>
+                            <strong>Soil Moisture:</strong> {{ $item['sensor3'] ?? 'N/A' }}<br>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+        
     </div>
 
     

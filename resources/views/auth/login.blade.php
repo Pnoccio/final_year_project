@@ -58,6 +58,12 @@
                         <button class="btn btn-primary btn-user btn-block">
                             Login
                         </button>
+                        @if (auth()->guest())
+                            @if (!\App\Models\User::where('email', request()->email)->exists())
+                                <a class="small" href="{{ route('register') }}">Create an Account</a>
+                            @endif
+                            
+                        @endif
                     </form>
                     <hr>
                     <div class="text-center">

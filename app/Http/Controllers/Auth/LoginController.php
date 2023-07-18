@@ -5,20 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Facades\Request;
+use App\Http\Controllers\Auth\User;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     use AuthenticatesUsers;
 
     protected $redirectTo = RouteServiceProvider::HOME;
@@ -27,4 +18,9 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // public function authenticated(Request $request, User $user){
+    //     session()->flash('success', 'Welcome back, ' . $user->first_name);
+    //     return redirect()->intended($this->redirectPath());
+    // }
 }
